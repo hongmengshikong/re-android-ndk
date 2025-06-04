@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Computer</string>
+    <string name="textview">First</string>
+    <string name="textview2">Second</string>
+    <string name="textview3">Result</string>
+    <string name="editText_hint">第一个数</string>
+    <string name="editText2_hint">第二个数</string>
+    <string name="add">+</string>
+    <string name="div">/</string>
+    <string name="mul">*</string>
+    <string name="sub">-</string>
+</resources>
