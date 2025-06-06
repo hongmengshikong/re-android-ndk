@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Base64Crypto</string>
+    <string name="plaintext">明文</string>
+    <string name="hint">明文</string>
+    <string name="ciphertext">密文</string>
+    <string name="button">Base64加密</string>
+</resources>
