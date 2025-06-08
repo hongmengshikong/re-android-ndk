@@ -5,4 +5,6 @@
     <string name="ciphertext">密文</string>
     <string name="button">Base64加密</string>
     <string name="button2">Xor加密</string>
+    <string name="button3">TEA加密</string>
+    <string name="button4">AES加密</string>
 </resources>

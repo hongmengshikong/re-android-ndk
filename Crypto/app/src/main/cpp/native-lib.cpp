@@ -2,6 +2,9 @@
 #include <string>
 #include "base64.h"
 #include "xor.h"
+#include "Utils.h"
+#include "EncryptTEA.h"
+#include "aes.h"
 
 extern "C"
 JNIEXPORT jstring JNICALL
@@ -33,4 +36,44 @@ Java_com_example_crypto_MainActivity_XorEncode(JNIEnv *env, jobject thiz, jstrin
 
     env->ReleaseStringUTFChars(str, c_str);
     return env->NewStringUTF(result.c_str());
+}
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_com_example_crypto_MainActivity_TEAEncode(JNIEnv *env, jobject thiz, jstring string) {
+    const char *c_str = env->GetStringUTFChars(string, nullptr);
+    if (!c_str) return nullptr;
+
+    std::string src(c_str);
+    std::string keyStr = "this_is_tea_flag";
+    uint32_t key[4];
+    StringToKey(keyStr, key);
+    std::vector<uint8_t> encryptedData;
+    EncryptString(src, key, encryptedData);
+    std::string hexResult = BytesToHex(encryptedData);
+    env->ReleaseStringUTFChars(string, c_str);
+    return env->NewStringUTF(hexResult.c_str());
+}
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_com_example_crypto_MainActivity_AESEncode(JNIEnv *env, jobject thiz, jstring string) {
+    const char *c_str = env->GetStringUTFChars(string, nullptr);
+    if (!c_str) return nullptr;
+
+    std::string src(c_str);
+
+    std::string keyStr = "this_is_aes_flag"; // 确保是16字节
+    unsigned char key[16];
+    StringToKey(keyStr, key);
+    std::vector<unsigned char> padded = PadTo16Bytes(src);
+    AES aes(key);
+    for (size_t i = 0; i < padded.size(); i += 16)
+        aes.Cipher(&padded[i]);
+
+    // 将密文转成十六进制字符串
+    std::string result = BytesToHex(padded);
+
+    env->ReleaseStringUTFChars(string, c_str);
+
+    return env->NewStringUTF(result.c_str());
+
 }
