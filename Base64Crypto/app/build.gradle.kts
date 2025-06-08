@@ -14,6 +14,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            //noinspection ChromeOsAbiSupport
+            abiFilters += listOf("arm64-v8a") // 或 "armeabi-v7a" "x86_64" "x86" 取决于你想支持哪个架构
+        }
     }
 
     buildTypes {
