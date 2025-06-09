@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     TextView ciphertext;
-    Button button,button2,button3,button4;
+    Button button,button2,button3,button4,button5;
     EditText plaintext;
 
     // Used to load the 'crypto' library on application startup.
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         button2=findViewById(R.id.button2);
         button3=findViewById(R.id.button3);
         button4=findViewById(R.id.button4);
+        button5=findViewById(R.id.button5);
         plaintext=findViewById(R.id.editText);
     }
 
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 result = TEAEncode(input);
             }else if (v.getId() == R.id.button4) {
                 result = AESEncode(input);
+            }else if (v.getId() == R.id.button5) {
+                result = DESEncode(input);
             } else {
                 return; // 不处理其他按钮
             }
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(cl);
         button3.setOnClickListener(cl);
         button4.setOnClickListener(cl);
+        button5.setOnClickListener(cl);
     }
 
     /**
@@ -70,5 +74,6 @@ public class MainActivity extends AppCompatActivity {
     private native String Base64Encode(String str);
     private native String XorEncode(String str);
     private native String TEAEncode(String string);
-    private native String AESEncode(String ststringr);
+    private native String AESEncode(String string);
+    private native String DESEncode(String string);
 }
