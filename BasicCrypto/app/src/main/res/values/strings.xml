@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BasicCrypto</string>
+    <string name="plaintext">明文</string>
+    <string name="hint">明文</string>
+    <string name="ciphertext">密文</string>
+    <string name="button">Basic加密</string>
+    <!--    自行修改button名称-->
+</resources>
