@@ -1,7 +1,7 @@
 #include "base64.h"
 
 // Base64编码函数
-std::string base64_encode(const std::string &src, const char* base64_table) {
+std::string encode_base64(const std::string &src, const char* base64_table) {
     std::string encoded;
     size_t len = src.size();
     size_t i = 0;
