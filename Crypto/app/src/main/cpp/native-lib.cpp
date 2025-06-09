@@ -8,13 +8,16 @@
 
 extern "C"
 JNIEXPORT jstring JNICALL
-Java_com_example_crypto_MainActivity_Base64Encode(JNIEnv *env, jobject thiz, jstring str) {
-    const char *c_str = env->GetStringUTFChars(str, nullptr);
+Java_com_example_crypto_MainActivity_Base64Encode(JNIEnv *env, jobject thiz, jstring string) {
+    const char *c_str = env->GetStringUTFChars(string, nullptr);
     if (!c_str) return nullptr;
 
     std::string src(c_str);
-    std::string result = base64_encode(src);
-    env->ReleaseStringUTFChars(str, c_str);
+//    std::string result = base64_encode(src);
+    const char base64_table[] = "QWERTYUIOPASDFGHJKLZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789+/";
+    std::string result = encode_base64(src,base64_table);
+
+    env->ReleaseStringUTFChars(string, c_str);
 
     return env->NewStringUTF(result.c_str());
 }

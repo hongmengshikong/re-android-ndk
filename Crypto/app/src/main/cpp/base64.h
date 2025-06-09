@@ -5,7 +5,5 @@
 #include <string>
 
 // 自定义 Base64 编码函数
-std::string base64_encode(const std::string &src);
-
-std::string base64_decode(const std::string &src);
+std::string encode_base64(const std::string& src, const char* base64_table);
 #endif // BASE64_H
