@@ -3,4 +3,6 @@
     <string name="button3">TEA加密</string>
     <string name="button4">AES加密</string>
     <string name="button5">DES加密</string>
+    <string name="button6">RSA加密</string>
+    <string name="button7">MD5加密</string>
 </resources>

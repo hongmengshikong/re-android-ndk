@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     TextView ciphertext;
-    Button button,button2,button3,button4,button5;
+    Button button,button2,button3,button4,button5,button6,button7;
     EditText plaintext;
 
     // Used to load the 'crypto' library on application startup.
@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         button3=findViewById(R.id.button3);
         button4=findViewById(R.id.button4);
         button5=findViewById(R.id.button5);
+        button6=findViewById(R.id.button6);
+        button7=findViewById(R.id.button7);
         plaintext=findViewById(R.id.editText);
     }
 
@@ -55,7 +57,11 @@ public class MainActivity extends AppCompatActivity {
                 result = AESEncode(input);
             }else if (v.getId() == R.id.button5) {
                 result = DESEncode(input);
-            } else {
+            }else if (v.getId() == R.id.button6) {
+                result = RSAEncode(input);
+            }else if (v.getId() == R.id.button7) {
+                result = MD5Encode(input);
+            }else {
                 return; // 不处理其他按钮
             }
             ciphertext.setText(result);
@@ -65,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(cl);
         button4.setOnClickListener(cl);
         button5.setOnClickListener(cl);
+        button6.setOnClickListener(cl);
+        button7.setOnClickListener(cl);
     }
 
     /**
@@ -76,4 +84,6 @@ public class MainActivity extends AppCompatActivity {
     private native String TEAEncode(String string);
     private native String AESEncode(String string);
     private native String DESEncode(String string);
+    private native String RSAEncode(String string);
+    private native String MD5Encode(String string);
 }

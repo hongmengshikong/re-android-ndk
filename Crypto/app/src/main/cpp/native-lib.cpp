@@ -1,10 +1,13 @@
 #include <jni.h>
 #include <string>
+#include <sstream>
 #include "base64.h"
 #include "xor.h"
 #include "Utils.h"
 #include "EncryptTEA.h"
 #include "aes.h"
+#include "RSA.h"
+#include "md5.h"
 
 extern "C"
 JNIEXPORT jstring JNICALL
@@ -104,6 +107,42 @@ Java_com_example_crypto_MainActivity_DESEncode(JNIEnv *env, jobject thiz, jstrin
     std::string result = blockToHex(encryptedBlocks);
 
 //    std::string result = encode_base64(src,base64_table);
+
+    env->ReleaseStringUTFChars(string, c_str);
+
+    return env->NewStringUTF(result.c_str());
+}
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_com_example_crypto_MainActivity_RSAEncode(JNIEnv *env, jobject thiz, jstring string) {
+    const char *c_str = env->GetStringUTFChars(string, nullptr);
+    if (!c_str) return nullptr;
+
+    std::string src(c_str);
+
+    RSA rsa;
+    // 加密
+    vector<long long> cipherText = rsa.Encrypt(src);
+    stringstream ss;
+
+    for (long long cipher : cipherText) {
+        ss << cipher << " ";
+    }
+    std::string result = ss.str();
+
+    env->ReleaseStringUTFChars(string, c_str);
+
+    return env->NewStringUTF(result.c_str());
+}
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_com_example_crypto_MainActivity_MD5Encode(JNIEnv *env, jobject thiz, jstring string) {
+    const char *c_str = env->GetStringUTFChars(string, nullptr);
+    if (!c_str) return nullptr;
+
+    std::string src(c_str);
+
+    std::string result = MD5(src).toStr();
 
     env->ReleaseStringUTFChars(string, c_str);
 

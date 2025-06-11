@@ -33,6 +33,8 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
         EncryptTEA.cpp
         aes.cpp
         des.cpp
+        RSA.cpp
+        md5.cpp
 )
 
 # Specifies libraries CMake should link to your target library. You
