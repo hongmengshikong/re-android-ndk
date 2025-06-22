@@ -18,7 +18,8 @@ public class Hook implements IXposedHookLoadPackage {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 super.beforeHookedMethod(param);
-                Log.d("kong",param.args[0].toString());
+                Log.d("kong","=== [MD5 加密] 开始 ===");
+                Log.d("kong","[明文] " + param.args[0].toString());
                 // 打印堆栈信息
                 Log.d("kong", "【调用堆栈开始】");
                 StackTraceElement[] stackTraces = new Throwable("stack_logs").getStackTrace();
